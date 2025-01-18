@@ -101,4 +101,21 @@
         });
     </script>
 </body>
-</html>
+</html>document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    // Validate credentials
+    if (username === "Ahmed Samy" && password === "AhmedSamy123" || 
+        username === "Ibrahim Yasser" && password === "IbrahimYasser123") {
+        alert("Login successful!");
+        localStorage.setItem("userLoggedIn", "true"); // Optional: Save login state
+        localStorage.setItem("currentUser", username); // Optional: Save username
+        window.location.href = "https://hatmenmasr.my.canva.site/"; // Redirect to external site
+    } else {
+        alert("Invalid username or password.");
+    }
+});
+
