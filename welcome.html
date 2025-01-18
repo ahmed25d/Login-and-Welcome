@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .user-info {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .user-info img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .logout-btn {
+            background-color: #dc3545;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Protected Page</h1>
+    <div class="user-info">
+        <img src="https://via.placeholder.com/50" alt="User Icon" id="userIcon">
+        <span id="userName"></span>
+    </div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+
+    <script>
+        // Check login state on page load
+        if (localStorage.getItem("userLoggedIn") !== "true") {
+            alert("Access denied. Please log in first.");
+            window.location.href = "index.html"; // Redirect to the login page
+        } else {
+            // Display the user's full name
+            const fullName = localStorage.getItem("currentUser");
+            document.getElementById("userName").textContent = `Hello, ${fullName}`;
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem("userLoggedIn");
+            localStorage.removeItem("currentUser");
+            alert("You have been logged out.");
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>
