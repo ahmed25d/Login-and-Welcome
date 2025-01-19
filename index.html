@@ -1,104 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            height: 100%;
-        }
-
-        .login-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .login-box {
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .login-box h2 {
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-
-        .login-box input[type="text"],
-        .login-box input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        .login-box input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .login-box input[type="submit"]:hover {
-            background-color: #218838;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+    .login-container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 300px;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #28a745;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-box">
-            <h2>Login</h2>
-            <form id="loginForm">
-                <input type="text" id="username" placeholder="Username"><br>
-                <input type="password" id="password" placeholder="Password"><br>
-                <input type="submit" value="Login">
-            </form>
-        </div>
-    </div>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+  <script>
+    // Define credentials
+    const credentials = {
+      "Ahmed Samy": "AhmedSamy123",
+      "Ibrahim Yasser": "IbrahimYasser123",
+      "User3": "Password3",
+      "User4": "Password4",
+      "User5": "Password5",
+      "User6": "Password6",
+      "User7": "Password7",
+      "User8": "Password8",
+      "User9": "Password9",
+      "User10": "Password10",
+      // Additional users can be added here...
+    };
 
-    <script>
-        // Object holding allowed usernames, passwords, and full names
-        const users = {
-            "ahmed": { password: "samy123", fullName: "Ahmed Samy" },
-            "ibrahim": { password: "yasser123", fullName: "Ibrahim Yasser" }
-        };
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent default form submission
 
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the form from submitting
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
 
-            const username = document.getElementById("username").value.trim();
-            const password = document.getElementById("password").value.trim();
+      // Debugging: Check inputs
+      console.log("Username entered:", username);
+      console.log("Password entered:", password);
 
-            if (username === "" || password === "") {
-                alert("Please fill out all fields.");
-                return false;
-            }
-
-            if (users[username] && users[username].password === password) {
-                alert("Login successful!");
-                localStorage.setItem("userLoggedIn", "true"); // Set login flag
-                localStorage.setItem("currentUser", users[username].fullName); // Store the full name
-                window.location.href = "welcome.html"; // Redirect to the protected page
-            } else {
-                alert("Invalid username or password.");
-                return false;
-            }
-        });
-    </script>
+      // Check credentials
+      if (credentials[username] === password) {
+        alert("Login successful!");
+        window.location.href = "https://hatmenmasr.my.canva.site/"; // Redirect to external site
+      } else {
+        alert("Invalid username or password.");
+        console.log("Stored Password:", credentials[username]); // Debugging output
+      }
+    });
+  </script>
 </body>
 </html>
